@@ -53,7 +53,8 @@ public class CampoMinado
                         break;
                     case 4:
                         Console.WriteLine("\nIniciando o Jogo de Campo Minado...");
-
+                        IniciarJogo();
+                        
                         Console.WriteLine("\nO jogo foi encerrado. Pressione qualquer tecla para voltar ao menu.");
                         Console.ReadKey();
                         break;
@@ -135,44 +136,48 @@ public class CampoMinado
 
     public static void IniciarJogo()
     {
+        bool jogoAtivo = true;
         int linha = 0;
         int coluna = 0;
 
-        string[,] celulas =
+        char[,] celulas =
         {
-            { "b", "1", "0", "2", "b", "b", "3", "b", "3", "b"},
-            { "2", "2", "0", "2", "b", "4", "3", "b", "3", "1"},
-            { "b", "3", "2", "2", "2", "b", "2", "2", "2", "1"},
-            { "2", "b", "b", "1", "1", "1", "1", "1", "b", "2"},
-            { "3", "4", "3", "1", "0", "1", "1", "1", "2", "b"},
-            { "b", "b", "1", "0", "0", "1", "b", "1", "1", "1"},
-            { "3", "3", "2", "0", "0", "2", "2", "2", "1", "1"},
-            { "1", "b", "1", "0", "1", "3", "b", "2", "2", "b"},
-            { "1", "1", "2", "1", "3", "b", "b", "3", "3", "b"},
-            { "0", "0", "1", "b", "3", "b", "3", "2", "b", "2"}
+            { 'b', '1', '0', '2', 'b', 'b', '3', 'b', '3', 'b'},
+            { '2', '2', '0', '2', 'b', '4', '3', 'b', '3', '1'},
+            { 'b', '3', '2', '2', '2', 'b', '2', '2', '2', '1'},
+            { '2', 'b', 'b', '1', '1', '1', '1', '1', 'b', '2'},
+            { '3', '4', '3', '1', '0', '1', '1', '1', '2', 'b'},
+            { 'b', 'b', '1', '0', '0', '1', 'b', '1', '1', '1'},
+            { '3', '3', '2', '0', '0', '2', '2', '2', '1', '1'},
+            { '1', 'b', '1', '0', '1', '3', 'b', '2', '2', 'b'},
+            { '1', '1', '2', '1', '3', 'b', 'b', '3', '3', 'b'},
+            { '0', '0', '1', 'b', '3', 'b', '3', '2', 'b', '2'}
         };
     
+        while(jogoAtivo)
+        {
+            Console.Write("Digite uma linha (0-9):");
+            while(!int.TryParse(Console.ReadLine()!, out linha) || linha < 0 || linha > 9 )
+            {
+                Console.WriteLine("Numero de linha invalido, digite novamente:");
+            }
 
-        Console.Write("Digite uma linha (0-9):");
-        while(!int.TryParse(Console.ReadLine()!, out linha))
-        {
-            Console.WriteLine("Numero de linha invalido:");
-        }
+            Console.Write("Digite uma coluna (0-9):");
+            while(!int.TryParse(Console.ReadLine()!, out coluna) || coluna < 0 || coluna > 9 )
+            {
+                Console.WriteLine("Numero de coluna invalido, digite novamente:");
+            }
 
-        Console.Write("Digite uma coluna (0-9):");
-        while(!int.TryParse(Console.ReadLine()!, out coluna))
-        {
-            Console.WriteLine("Numero de coluna invalido:");
-        }
-
-        
-        if ([linha, coluna] == "b")
-        {
-            Console.WriteLine("Você clicou na bomba");
-        }
-        else
-        {
-            Console.WriteLine("Continue Jogando");
+            if ( celulas[linha, coluna] == 'b' )
+            {
+                Console.WriteLine(@"--FIM DE JOGO--
+                Uma bomba foi destruida");
+                jogoAtivo = false;
+            }
+            else
+            {
+                Console.WriteLine("Continue Jogando");
+            }
         }
     }
 }
