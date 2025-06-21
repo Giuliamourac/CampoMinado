@@ -30,6 +30,6 @@ Clique no botão abaixo para baixar o jogo:
 ---
 
 ## 📸 Imagens
-![Tela Inicial]()
-![Jogo]()
+![Tela Inicial](/imagens/telainicial.pgn)
+![Jogo](/imagens/jogo.png)
 
